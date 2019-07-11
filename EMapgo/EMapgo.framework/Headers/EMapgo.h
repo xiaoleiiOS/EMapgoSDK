@@ -2,11 +2,11 @@
 
 #import "MGLFoundation.h"
 
-/// Project version number for Mapbox.
-FOUNDATION_EXPORT MGL_EXPORT double MapboxVersionNumber;
+/// Project version number for EMapgo.
+FOUNDATION_EXPORT MGL_EXPORT double EMapgoVersionNumber;
 
-/// Project version string for Mapbox.
-FOUNDATION_EXPORT MGL_EXPORT const unsigned char MapboxVersionString[];
+/// Project version string for EMapgo.
+FOUNDATION_EXPORT MGL_EXPORT const unsigned char EMapgoVersionString[];
 
 #import "MGLAnnotationView.h"
 #import "MGLAccountManager.h"
@@ -14,6 +14,7 @@ FOUNDATION_EXPORT MGL_EXPORT const unsigned char MapboxVersionString[];
 #import "MGLAnnotationImage.h"
 #import "MGLCalloutView.h"
 #import "MGLClockDirectionFormatter.h"
+#import "MGLCluster.h"
 #import "MGLCompassDirectionFormatter.h"
 #import "MGLCoordinateFormatter.h"
 #import "MGLDistanceFormatter.h"
@@ -69,3 +70,7 @@ FOUNDATION_EXPORT MGL_EXPORT const unsigned char MapboxVersionString[];
 #import "NSExpression+MGLAdditions.h"
 #import "NSPredicate+MGLAdditions.h"
 #import "MGLLocationManager.h"
+#import "MGLLoggingConfiguration.h"
+#import "MGLNetworkConfiguration.h"
+#import "MGLAttributedExpression.h"
+#import "MGLSDKMetricsManager.h"

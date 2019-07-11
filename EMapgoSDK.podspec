@@ -38,6 +38,7 @@ TODO: 易图通地图iOS SDK基于iOS 9.0。通过调用地图SDK接口，您可
 #s.resource = 'EMapgoSDK/Assets/*.lproj', 'TGameSDK/Assets/TGameFramework.bundle'
 
 #  s.vendored_frameworks = 'TGameSDKTest.framework'
+
   #你的SDK路径
    s.vendored_frameworks = 'EMapgo/*.framework'
 
