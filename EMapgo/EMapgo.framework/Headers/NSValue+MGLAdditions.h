@@ -8,7 +8,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Methods for round-tripping values for Mapbox-defined types.
+ Methods for round-tripping values for EMapgo-defined types.
  */
 @interface NSValue (MGLAdditions)
 
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) CLLocationCoordinate2D MGLCoordinateValue;
 
 /**
- Creates a new value object containing the specified Mapbox map point structure.
+ Creates a new value object containing the specified EMapgo map point structure.
 
  @param point The value for the new object.
  @return A new value object that contains the coordinate and zoom level information.
@@ -37,12 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)valueWithMGLMapPoint:(MGLMapPoint)point;
 
 /**
- The Mapbox map point structure representation of the value.
+ The EMapgo map point structure representation of the value.
  */
 @property (readonly) MGLMapPoint MGLMapPointValue;
 
 /**
- Creates a new value object containing the specified Mapbox coordinate span
+ Creates a new value object containing the specified EMapgo coordinate span
  structure.
 
  @param span The value for the new object.
@@ -51,12 +51,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
 
 /**
- The Mapbox coordinate span structure representation of the value.
+ The EMapgo coordinate span structure representation of the value.
  */
 @property (readonly) MGLCoordinateSpan MGLCoordinateSpanValue;
 
 /**
- Creates a new value object containing the specified Mapbox coordinate bounds
+ Creates a new value object containing the specified EMapgo coordinate bounds
  structure.
 
  @param bounds The value for the new object.
@@ -65,12 +65,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
 
 /**
- The Mapbox coordinate bounds structure representation of the value.
+ The EMapgo coordinate bounds structure representation of the value.
  */
 @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
 
 /**
- Creates a new value object containing the specified Mapbox coordinate 
+ Creates a new value object containing the specified EMapgo coordinate
  quad structure.
 
  @param quad The value for the new object.
@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)valueWithMGLCoordinateQuad:(MGLCoordinateQuad)quad;
 
 /**
- The Mapbox coordinate quad structure representation of the value.
+ The EMapgo coordinate quad structure representation of the value.
  */
 - (MGLCoordinateQuad)MGLCoordinateQuadValue;
 

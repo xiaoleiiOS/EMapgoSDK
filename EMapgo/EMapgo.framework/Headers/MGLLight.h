@@ -68,12 +68,6 @@ NS_INLINE MGLSphericalPosition MGLSphericalPositionMake(CGFloat radial, CLLocati
  light.anchor = NSExpression(forConstantValue: "map")
  mapView.style?.light = light
  ```
- 
- #### Related examples
- See the <a
- href="https://docs.mapbox.com/ios/maps/examples/light-example/">Adjust light of
- 3D buildings</a> to learn how to create and modify the light source for 3D
- geometries.
  */
 MGL_EXPORT
 @interface MGLLight : NSObject
@@ -100,10 +94,6 @@ MGL_EXPORT
  This property does not support applying interpolation functions to the
  `$zoomLevel` variable or applying interpolation or step functions to feature
  attributes.
-
- This property corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-js/style-spec/#light-anchor"><code>anchor</code></a>
- light property in the Mapbox Style Specification.
  */
 @property (nonatomic) NSExpression *anchor;
 
@@ -130,16 +120,6 @@ MGL_EXPORT
  
  This property does not support applying interpolation or step functions to
  feature attributes.
-
- This property corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-js/style-spec/#light-position"><code>position</code></a>
- light property in the Mapbox Style Specification.
-
- #### Related examples
- See the <a
- href="https://docs.mapbox.com/ios/maps/examples/light-example/">Adjust light of
- 3D buildings</a> example to learn how to create and modify the position of
- value of an `MGLLight` object for 3D geometries.
  */
 @property (nonatomic) NSExpression *position;
 
@@ -167,10 +147,6 @@ MGL_EXPORT
  
  This property does not support applying interpolation or step functions to
  feature attributes.
-
- This property corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-js/style-spec/#light-color"><code>color</code></a>
- light property in the Mapbox Style Specification.
  */
 @property (nonatomic) NSExpression *color;
 #else
@@ -190,10 +166,6 @@ MGL_EXPORT
  
  This property does not support applying interpolation or step functions to
  feature attributes.
-
- This property corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-js/style-spec/#light-color"><code>color</code></a>
- light property in the Mapbox Style Specification.
  */
 @property (nonatomic) NSExpression *color;
 #endif
@@ -222,10 +194,6 @@ MGL_EXPORT
  
  This property does not support applying interpolation or step functions to
  feature attributes.
-
- This property corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-js/style-spec/#light-intensity"><code>intensity</code></a>
- light property in the Mapbox Style Specification.
  */
 @property (nonatomic) NSExpression *intensity;
 

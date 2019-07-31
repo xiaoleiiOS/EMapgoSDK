@@ -15,83 +15,58 @@ typedef NSString *MGLExpressionInterpolationMode NS_TYPED_ENUM;
 
 /**
  An `NSString` identifying the `linear` interpolation type in an `NSExpression`.
- 
- This attribute corresponds to the `linear` value in the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-interpolate"><code>interpolate</code></a>
- expression operator in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionInterpolationModeLinear;
 
 /**
  An `NSString` identifying the `expotential` interpolation type in an `NSExpression`.
  
- This attribute corresponds to the `exponential` value in the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-interpolate"><code>interpolate</code></a>
- expression operator in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionInterpolationModeExponential;
 
 /**
  An `NSString` identifying the `cubic-bezier` interpolation type in an `NSExpression`.
- 
- This attribute corresponds to the `cubic-bezier` value in the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-interpolate"><code>interpolate</code></a>
- expression operator in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionInterpolationModeCubicBezier;
 
 /**
- Methods for creating expressions that use Mapbox-specific functionality and for
- converting to and from the JSON format defined in the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions">Mapbox Style Specification</a>.
+ Methods for creating expressions that use EMapgo-specific functionality.
  */
 @interface NSExpression (MGLAdditions)
 
 #pragma mark Creating Variable Expressions
 
 /**
- `NSExpression` variable that corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-zoom"><code>zoom</code></a>
- expression operator in the Mapbox Style Specification.
+ `NSExpression` variable that corresponds.
  */
 @property (class, nonatomic, readonly) NSExpression *zoomLevelVariableExpression;
 
 /**
- `NSExpression` variable that corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-heatmap-density"><code>heatmap-density</code></a>
- expression operator in the Mapbox Style Specification.
+ `NSExpression` variable that corresponds.
  */
 @property (class, nonatomic, readonly) NSExpression *heatmapDensityVariableExpression;
 
 /**
- `NSExpression` variable that corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-line-progress"><code>line-progress</code></a>
- expression operator in the Mapbox Style Specification.
+ `NSExpression` variable that corresponds.
  */
 @property (class, nonatomic, readonly) NSExpression *lineProgressVariableExpression;
 
 /**
- `NSExpression` variable that corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#eexpressions-geometry-type"><code>geometry-type</code></a>
- expression operator in the Mapbox Style Specification.
+ `NSExpression` variable that corresponds.
  */
 @property (class, nonatomic, readonly) NSExpression *geometryTypeVariableExpression;
 
 /**
- `NSExpression` variable that corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-id"><code>id</code></a>
- expression operator in the Mapbox Style Specification.
+ `NSExpression` variable that corresponds.
  */
 @property (class, nonatomic, readonly) NSExpression *featureIdentifierVariableExpression;
 
 /**
- `NSExpression` variable that corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-properties"><code>properties</code></a>
- expression operator in the Mapbox Style Specification.
+ `NSExpression` variable that corresponds.
  */
 @property (class, nonatomic, readonly) NSExpression *featureAttributesVariableExpression;
 
-@property (class, nonatomic, readonly) NSExpression *featurePropertiesVariableExpression __attribute__((deprecated("Use -featureAttributesVariableExpression.")));
+@property (class, nonatomic, readonly) NSExpression *featurePropertiesVariableExpression __attribute__((deprecated("", "featureAttributesVariableExpression")));
 
 #pragma mark Creating Conditional Expressions
 
@@ -114,13 +89,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionI
  @param steppingExpression The stepping expression.
  @param minimumExpression The expression which could be a constant or function expression.
  @param stops The stops must be an `NSDictionary` constant `NSExpression`.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/dds-circle-layer/">
- Data-driven circles</a>, <a href="https://docs.mapbox.com/ios/maps/examples/clustering/">
- Cluster point data</a>, and <a href="https://docs.mapbox.com/ios/maps/examples/clustering-with-images/">
- Use images to cluster point data</a> examples to learn how to use this
- expression to style a map layer based on an attribute value.
  */
 + (instancetype)mgl_expressionForSteppingExpression:(nonnull NSExpression*)steppingExpression fromExpression:(nonnull NSExpression *)minimumExpression stops:(nonnull NSExpression*)stops NS_SWIFT_NAME(init(forMGLStepping:from:stops:));
 
@@ -134,11 +102,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionI
  `MGLExpressionInterpolationModeCubicBezier`.
  @param parameters The parameters expression.
  @param stops The stops expression.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/heatmap-example/">
- Create a heatmap layer</a> example to learn how to style an `MGLHeatmapStyleLayer`
- based on zoom level and point density with this expression.
  */
 + (instancetype)mgl_expressionForInterpolatingExpression:(nonnull NSExpression*)inputExpression withCurveType:(nonnull MGLExpressionInterpolationMode)curveType parameters:(nullable NSExpression *)parameters stops:(nonnull NSExpression*)stops NS_SWIFT_NAME(init(forMGLInterpolating:curveType:parameters:stops:));
 
@@ -178,13 +141,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionI
  Returns an expression equivalent to the given Foundation object deserialized
  from JSON data.
  
- The Foundation object is interpreted according to the
- [Mapbox Style Specification](https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions).
- See the
- “[Information for Style Authors](../for-style-authors.html#setting-attribute-values)”
- guide for a correspondence of operators and types between the style
- specification and the `NSExpression` representation used by this SDK.
- 
  @param object A Foundation object deserialized from JSON data, for example
     using `NSJSONSerialization`.
  @return An initialized expression equivalent to `object`, suitable for use as
@@ -195,13 +151,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionI
 /**
  An equivalent Foundation object that can be serialized as JSON.
  
- The Foundation object conforms to the
- [Mapbox Style Specification](https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions).
- See the
- “[Information for Style Authors](../for-style-authors.html#setting-attribute-values)”
- guide for a correspondence of operators and types between the style
- specification and the `NSExpression` representation used by this SDK.
- 
  You can use `NSJSONSerialization` to serialize the Foundation object as data to
  write to a file.
  */
@@ -211,13 +160,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLExpressionInterpolationMode MGLExpressionI
 
 /**
  Returns a copy of the receiver localized into the given locale.
- 
- This method assumes the receiver refers to the feature attributes that are
- available in vector tiles supplied by the
- <a href="https://www.mapbox.com/vector-tiles/mapbox-streets-v8/#overview">Mapbox Streets source</a>.
- On iOS, the user can set the system’s preferred language in Settings, General
- Settings, Language & Region. On macOS, the user can set the system’s preferred
- language in the Language & Region pane of System Preferences.
  
  @param locale The locale into which labels should be localized. To use the
     system’s preferred language, if supported, specify `nil`. To use the local

@@ -46,15 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
  ]
  let polyline = MGLPolyline(coordinates: coordinates, count: UInt(coordinates.count))
  ```
-
- A polyline is known as a
- <a href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>
- geometry in GeoJSON.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-models/">
- Annotation models</a> example to learn how to add an `MGLPolyine` object to
- your map.
  */
 MGL_EXPORT
 @interface MGLPolyline : MGLMultiPoint <MGLOverlay>

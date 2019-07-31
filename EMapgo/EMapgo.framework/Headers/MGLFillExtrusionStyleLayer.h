@@ -39,11 +39,6 @@ typedef NS_ENUM(NSUInteger, MGLFillExtrusionTranslationAnchor) {
  otherwise, find it using the `MGLStyle.layers` property. You can also create a
  new fill-extrusion style layer and add it to the style using a method such as
  `-[MGLStyle addLayer:]`.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/extrusions/">Display
- 3D buildings</a> example to learn how to add and style 3D layers on a map.
-
  ### Example
 
  ```swift
@@ -169,10 +164,6 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to `YES`.
  Set this property to `nil` to reset it to the default value.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-fill-extrusion-vertical-gradient"><code>fill-extrusion-vertical-gradient</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant Boolean values
@@ -275,10 +266,6 @@ MGL_EXPORT
  `NSValue` object containing a `CGVector` struct set to 0 points rightward and 0
  points downward. Set this property to `nil` to reset it to the default value.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-fill-extrusion-translate"><code>fill-extrusion-translate</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant `CGVector` values
@@ -300,10 +287,6 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to an
  `NSValue` object containing a `CGVector` struct set to 0 points rightward and 0
  points upward. Set this property to `nil` to reset it to the default value.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-fill-extrusion-translate"><code>fill-extrusion-translate</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -336,10 +319,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `fillExtrusionTranslation` is
  non-`nil`. Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-fill-extrusion-translate-anchor"><code>fill-extrusion-translate-anchor</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  

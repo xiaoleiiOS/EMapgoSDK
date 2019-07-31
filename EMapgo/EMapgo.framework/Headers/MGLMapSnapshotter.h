@@ -14,10 +14,7 @@ MGL_EXPORT
 /**
  Creates a set of options with the minimum required information.
  
- @param styleURL URL of the map style to snapshot. The URL may be a full HTTP or
-    HTTPS URL, a Mapbox URL indicating the style’s map ID
-    (`mapbox://styles/{user}/{style}`), or a path to a local file relative to
-    the application’s resource path. Specify `nil` for the default style.
+ @param styleURL URL of the map style to snapshot. 
  @param size The image size.
  */
 - (instancetype)initWithStyleURL:(nullable NSURL *)styleURL camera:(MGLMapCamera *)camera size:(CGSize)size;
@@ -140,12 +137,6 @@ typedef void (^MGLMapSnapshotCompletionHandler)(MGLMapSnapshot* _Nullable snapsh
  and `MGLMapView` are compatible with offline packs managed by the
  `MGLOfflineStorage` class.
  
- From a snapshot, you can obtain an image and convert geographic coordinates to
- the image’s coordinate space in order to superimpose markers and overlays. If
- you do not need offline map functionality, you can use the `Snapshot` class in
- [MapboxStatic.swift](https://github.com/mapbox/MapboxStatic.swift/) to generate
- static map images with overlays.
- 
  ### Example
  
  ```swift
@@ -163,12 +154,6 @@ typedef void (^MGLMapSnapshotCompletionHandler)(MGLMapSnapshot* _Nullable snapsh
      image = snapshot?.image
  }
  ```
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/map-snapshotter/">
- Create a static map snapshot</a> example to learn how to use the
- `MGLMapSnapshotter` to generate a static image based on an `MGLMapView`
- object's style, camera, and view bounds.
  */
 MGL_EXPORT
 @interface MGLMapSnapshotter : NSObject

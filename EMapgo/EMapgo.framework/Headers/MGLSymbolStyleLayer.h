@@ -159,7 +159,7 @@ typedef NS_ENUM(NSUInteger, MGLSymbolPlacement) {
 typedef NS_ENUM(NSUInteger, MGLSymbolZOrder) {
     /**
      If `MGLSymbolStyleLayer.symbolSortKey` is set, sort based on that.
-     Otherwise sort symbols by their position relative to the viewport.
+     Otherwise sort symbols by their y-position relative to the viewport.
      */
     MGLSymbolZOrderAuto,
     /**
@@ -365,14 +365,6 @@ typedef NS_ENUM(NSUInteger, MGLTextTranslationAnchor) {
  new symbol style layer and add it to the style using a method such as
  `-[MGLStyle addLayer:]`.
 
- #### Related examples
- See the <a
- href="https://docs.mapbox.com/ios/maps/examples/runtime-multiple-annotations/">Dynamically
- style interactive points</a> and <a
- href="https://docs.mapbox.com/ios/maps/examples/clustering-with-images/">Use
- images to cluster point data</a> examples learn how to style data on your map
- using this layer.
-
  ### Example
 
  ```swift
@@ -417,10 +409,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `iconImageName` is non-`nil`.
  Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-icon-allow-overlap"><code>icon-allow-overlap</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -482,10 +470,6 @@ MGL_EXPORT
  This property is only applied to the style if `iconImageName` is non-`nil`.
  Otherwise, it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-icon-ignore-placement"><code>icon-ignore-placement</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant Boolean values
@@ -514,10 +498,6 @@ MGL_EXPORT
  Tokens inside non-constant expressions are ignored; instead, use `mgl_join:`
  and key path expressions.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-icon-image"><code>icon-image</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant string values
@@ -526,12 +506,6 @@ MGL_EXPORT
  * Variable assignments and references to assigned variables
  * Interpolation and step functions applied to the `$zoomLevel` variable and/or
  feature attributes
-
- #### Related examples
- See the <a
- href="https://docs.mapbox.com/ios/maps/examples/clustering-with-images/">Use
- images to cluster point data</a> example to learn how to dynamically set your
- icons with an expression.
  */
 @property (nonatomic, null_resettable) NSExpression *iconImageName;
 
@@ -669,10 +643,6 @@ MGL_EXPORT
  This property is only applied to the style if `iconImageName` is non-`nil`.
  Otherwise, it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-icon-rotate"><code>icon-rotate</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant numeric values
@@ -732,10 +702,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `iconImageName` is non-`nil`.
  Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-icon-size"><code>icon-size</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -849,10 +815,6 @@ MGL_EXPORT
  `MGLSymbolPlacementLine` or `MGLSymbolPlacementLineCenter`. Otherwise, it is
  ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-icon-keep-upright"><code>icon-keep-upright</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant Boolean values
@@ -882,10 +844,6 @@ MGL_EXPORT
  `symbolPlacement` is set to an expression that evaluates to either
  `MGLSymbolPlacementLine` or `MGLSymbolPlacementLineCenter`. Otherwise, it is
  ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-keep-upright"><code>text-keep-upright</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -917,10 +875,6 @@ MGL_EXPORT
  `MGLSymbolPlacementLine` or `MGLSymbolPlacementLineCenter`. Otherwise, it is
  ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-max-angle"><code>text-max-angle</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant numeric values
@@ -948,10 +902,6 @@ MGL_EXPORT
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-max-width"><code>text-max-width</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant numeric values no less than 0
@@ -974,10 +924,6 @@ MGL_EXPORT
  
  The default value of this property is an expression that evaluates to `NO`. Set
  this property to `nil` to reset it to the default value.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-symbol-avoid-edges"><code>symbol-avoid-edges</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1025,7 +971,7 @@ MGL_EXPORT
 
 /**
  Sorts features in ascending order based on this value. Features with a higher
- sort key will appear above features with a lower sort key wehn they overlap.
+ sort key will appear above features with a lower sort key when they overlap.
  Features with a lower sort key will have priority over other features when
  doing placement.
  
@@ -1075,7 +1021,7 @@ MGL_EXPORT
  * Constant `MGLSymbolZOrder` values
  * Any of the following constant string values:
    * `auto`: If `symbol-sort-key` is set, sort based on that. Otherwise sort
- symbols by their position relative to the viewport.
+ symbols by their y-position relative to the viewport.
    * `viewport-y`: Specify this z order if symbols’ appearance relies on lower
  features overlapping higher features. For example, symbols with a pin-like
  appearance would require this z order.
@@ -1103,10 +1049,6 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to the empty
  string. Set this property to `nil` to reset it to the default value.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-field"><code>text-field</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant string values
@@ -1116,13 +1058,6 @@ MGL_EXPORT
  * Variable assignments and references to assigned variables
  * Interpolation and step functions applied to the `$zoomLevel` variable and/or
  feature attributes
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/clustering/">Cluster
- point data</a> and <a
- href="https://docs.mapbox.com/ios/maps/examples/clustering-with-images/">Use
- images to cluster point data</a> to learn how to use an expression to set this
- attribute to the number of markers within a cluster.
  */
 @property (nonatomic, null_resettable) NSExpression *text;
 
@@ -1138,10 +1073,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-allow-overlap"><code>text-allow-overlap</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1166,8 +1097,8 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to `center`.
  Set this property to `nil` to reset it to the default value.
  
- This property is only applied to the style if `text` is non-`nil`. Otherwise,
- it is ignored.
+ This property is only applied to the style if `text` is non-`nil`, and
+ `textVariableAnchor` is set to `nil`. Otherwise, it is ignored.
  
  You can set this property to an expression containing any of the following:
  
@@ -1197,12 +1128,6 @@ MGL_EXPORT
 /**
  An array of font face names used to display the text.
  
- Each font name must be included in the `{fontstack}` portion of the JSON
- stylesheet’s <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#glyphs"><code>glyphs</code></a>
- property. You can register a custom font when designing the style in Mapbox
- Studio. Fonts installed on the system are not used.
- 
  The first font named in the array is applied to the text. For each character in
  the text, if the first font lacks a glyph for the character, the next font is
  applied as a fallback, and so on.
@@ -1213,10 +1138,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-font"><code>text-font</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1243,10 +1164,6 @@ MGL_EXPORT
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-size"><code>text-size</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant numeric values no less than 0
@@ -1269,10 +1186,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-ignore-placement"><code>text-ignore-placement</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1299,10 +1212,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-justify"><code>text-justify</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1380,7 +1289,8 @@ MGL_EXPORT
  ems downward. Set this property to `nil` to reset it to the default value.
  
  This property is only applied to the style if `text` is non-`nil`, and
- `textRadialOffset` is set to `nil`. Otherwise, it is ignored.
+ `textRadialOffset` is set to `nil`, and `textVariableAnchor` is set to `nil`.
+ Otherwise, it is ignored.
  
  You can set this property to an expression containing any of the following:
  
@@ -1403,7 +1313,8 @@ MGL_EXPORT
  ems upward. Set this property to `nil` to reset it to the default value.
  
  This property is only applied to the style if `text` is non-`nil`, and
- `textRadialOffset` is set to `nil`. Otherwise, it is ignored.
+ `textRadialOffset` is set to `nil`, and `textVariableAnchor` is set to `nil`.
+ Otherwise, it is ignored.
  
  You can set this property to an expression containing any of the following:
  
@@ -1500,8 +1411,11 @@ MGL_EXPORT
  
  This property is measured in ems.
  
- This property is only applied to the style if `textOffset` is set to `nil`.
- Otherwise, it is ignored.
+ The default value of this property is an expression that evaluates to the float
+ `0`. Set this property to `nil` to reset it to the default value.
+ 
+ This property is only applied to the style if `text` is non-`nil`. Otherwise,
+ it is ignored.
  
  You can set this property to an expression containing any of the following:
  
@@ -1524,10 +1438,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#layout-symbol-text-rotate"><code>text-rotate</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1608,9 +1518,9 @@ MGL_EXPORT
  an offset, use the `textRadialOffset` instead of the two-dimensional
  `textOffset`.
  
- This property is only applied to the style if `textAnchor` is set to `nil`, and
- `textOffset` is set to `nil`, and `symbolPlacement` is set to an expression
- that evaluates to or `MGLSymbolPlacementPoint`. Otherwise, it is ignored.
+ This property is only applied to the style if `text` is non-`nil`, and
+ `symbolPlacement` is set to an expression that evaluates to or
+ `MGLSymbolPlacementPoint`. Otherwise, it is ignored.
  
  You can set this property to an expression containing any of the following:
  
@@ -1847,10 +1757,6 @@ MGL_EXPORT
  This property is only applied to the style if `iconImageName` is non-`nil`.
  Otherwise, it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-icon-translate"><code>icon-translate</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant `CGVector` values
@@ -1875,10 +1781,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `iconImageName` is non-`nil`.
  Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-icon-translate"><code>icon-translate</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -1911,10 +1813,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `iconImageName` is non-`nil`, and
  `iconTranslation` is non-`nil`. Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-icon-translate-anchor"><code>icon-translate-anchor</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -2136,10 +2034,6 @@ MGL_EXPORT
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-text-translate"><code>text-translate</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant `CGVector` values
@@ -2164,10 +2058,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`. Otherwise,
  it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-text-translate"><code>text-translate</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -2200,10 +2090,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `text` is non-`nil`, and
  `textTranslation` is non-`nil`. Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-text-translate-anchor"><code>text-translate-anchor</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  

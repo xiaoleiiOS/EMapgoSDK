@@ -31,16 +31,6 @@ typedef NS_ENUM(NSUInteger, MGLRasterResamplingMode) {
  An `MGLRasterStyleLayer` is a style layer that renders georeferenced raster
  imagery on the map, especially raster tiles.
  
- Use a raster style layer to configure the color parameters of raster tiles
- loaded by an `MGLRasterTileSource` object or raster images loaded by an
- `MGLImageSource` object. For example, you could use a raster style layer to
- render <a href="https://www.mapbox.com/satellite/">Mapbox Satellite</a>
- imagery, a <a
- href="https://docs.mapbox.com/help/glossary/tileset/#raster-tilesets">raster
- tile set</a> uploaded to Mapbox Studio, or a raster map authored in <a
- href="https://tilemill-project.github.io/tilemill/">TileMill</a>, the classic
- Mapbox Editor, or Mapbox Studio Classic.
- 
  Raster images may also be used as icons or patterns in a style layer. To
  register an image for use as an icon or pattern, use the `-[MGLStyle
  setImage:forName:]` method. To configure a point annotation’s image, use the
@@ -51,13 +41,7 @@ typedef NS_ENUM(NSUInteger, MGLRasterResamplingMode) {
  otherwise, find it using the `MGLStyle.layers` property. You can also create a
  new raster style layer and add it to the style using a method such as
  `-[MGLStyle addLayer:]`.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/image-source/">Add
- an image</a> and <a
- href="https://docs.mapbox.com/ios/maps/examples/source-custom-raster/">Add
- raster imagery</a> examples to learn how to add imagery with this style layer.
-
+ 
  ### Example
 
  ```swift
@@ -93,10 +77,6 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to the float
  `1`. Set this property to `nil` to reset it to the default value.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-raster-brightness-max"><code>raster-brightness-max</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant numeric values between 0 and 1 inclusive
@@ -125,10 +105,6 @@ MGL_EXPORT
  
  The default value of this property is an expression that evaluates to the float
  `0`. Set this property to `nil` to reset it to the default value.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-raster-brightness-min"><code>raster-brightness-min</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -207,10 +183,6 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to the float
  `0`. Set this property to `nil` to reset it to the default value.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-raster-hue-rotate"><code>raster-hue-rotate</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant numeric values
@@ -265,10 +237,6 @@ MGL_EXPORT
  
  The default value of this property is an expression that evaluates to `linear`.
  Set this property to `nil` to reset it to the default value.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-raster-resampling"><code>raster-resampling</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  

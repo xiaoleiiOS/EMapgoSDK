@@ -48,30 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
  `MGLVectorStyleLayer.predicate` property, compare the special `$id` attribute
  to the feature’s identifier.
 
- In vector tiles loaded by `MGLVectorTileSource` objects, the identifier
- corresponds to the
- <a href="https://github.com/mapbox/vector-tile-spec/tree/master/2.1#42-features">feature identifier</a>
- (`id`). If the source does not specify the feature’s identifier, the value of
- this property is `nil`. If specified, the identifier may be an integer,
- floating-point number, or string. These data types are mapped to instances of
- the following Foundation classes:
-
- <table>
- <thead>
- <tr><th>In the tile source</th><th>This property</th></tr>
- </thead>
- <tbody>
- <tr><td>Integer</td>               <td><code>NSNumber</code> (use the <code>unsignedLongLongValue</code> or <code>longLongValue</code> property)</td></tr>
- <tr><td>Floating-point number</td> <td><code>NSNumber</code> (use the <code>doubleValue</code> property)</td></tr>
- <tr><td>String</td>                <td><code>NSString</code></td></tr>
- </tbody>
- </table>
-
- For details about the identifiers used in most Mapbox-provided styles, consult
- the
- <a href="https://www.mapbox.com/vector-tiles/mapbox-streets/">Mapbox Streets</a>
- layer reference.
-
  The identifier should be set before adding the feature to an `MGLShapeSource`
  object; setting it afterwards has no effect on the map’s contents. While it is
  possible to change this value on feature instances obtained from
@@ -97,16 +73,16 @@ NS_ASSUME_NONNULL_BEGIN
  renders this feature. For example, if you display features in an
  `MGLShapeSource` using an `MGLCircleStyleLayer`, you can assign a `halfway`
  attribute to each of the source’s features, then set
- `MGLCircleStyleLayer.circleRadius` to an `MGLStyleValue` object with an
- interpolation mode of `MGLInterpolationModeIdentity` and an attribute name of
- `halfway`.
+ `MGLCircleStyleLayer.circleRadius` to an expression for the key path `halfway`.
  
- The `MGLSymbolStyleLayer.textField` and `MGLSymbolStyleLayer.iconImageName`
+ The `MGLSymbolStyleLayer.text` and `MGLSymbolStyleLayer.iconImageName`
  properties allow you to use attributes yet another way. For example, to label
  features in an `MGLShapeSource` object by their names, you can assign a `name`
  attribute to each of the source’s features, then set
- `MGLSymbolStyleLayer.textField` to an `MGLStyleValue` object containing the
- raw string value `{name}`.
+ `MGLSymbolStyleLayer.text` to an expression for the constant string value
+ `{name}`. See the
+ <a href="../predicates-and-expressions.html">Predicates and Expressions</a>
+ guide for more information about expressions.
 
  In vector tiles loaded by `MGLVectorTileSource` objects, the keys and values of
  each feature’s attribute dictionary are determined by the source. Each
@@ -126,22 +102,6 @@ NS_ASSUME_NONNULL_BEGIN
  <tr><td>String</td>                <td><code>NSString</code></td></tr>
  </tbody>
  </table>
-
- For details about the attribute names and values found in Mapbox-provided
- vector tile sources, consult the
- <a href="https://www.mapbox.com/vector-tiles/mapbox-streets/">Mapbox Streets</a>
- and
- <a href="https://www.mapbox.com/vector-tiles/mapbox-terrain/">Mapbox Terrain</a>
- layer references.
- 
- When adding a feature to an `MGLShapeSource`, use the same Foundation types
- listed above for each attribute value. In addition to the Foundation types, you
- may also set an attribute to an `NSColor` (macOS) or `UIColor` (iOS), which
- will be converted into its
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#types-color">CSS string representation</a>
- when the feature is added to an `MGLShapeSource`. This can be convenient when
- using the attribute to supply a value for a color-typed layout or paint
- attribute via the `MGLInterpolationModeIdentity` interpolation mode.
 
  Note that while it is possible to change this value on feature
  instances obtained from `-[MGLMapView visibleFeaturesAtPoint:]` and related
@@ -183,11 +143,6 @@ MGL_EXPORT
 /**
  An `MGLPointFeature` object associates a point shape with an optional
  identifier and attributes.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/runtime-multiple-annotations/">
- Dynamically style interactive points</a> example to learn how to initialize
- `MGLPointFeature` objects and add them to your map.
  */
 MGL_EXPORT
 @interface MGLPointFeature : MGLPointAnnotation <MGLFeature>
@@ -198,11 +153,6 @@ MGL_EXPORT
  identifier and attributes) and represents a point cluster.
  
  @see `MGLCluster`
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/clustering/">
- Clustering point data</a> example to learn how to initialize
- clusters and add them to your map.
  */
 MGL_EXPORT
 @interface MGLPointFeatureCluster : MGLPointFeature <MGLCluster>
@@ -211,15 +161,6 @@ MGL_EXPORT
 /**
  An `MGLPolylineFeature` object associates a polyline shape with an optional
  identifier and attributes.
-
- A polyline feature is known as a
- <a href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>
- feature in GeoJSON.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/line-geojson/">
- Add a line annotation from GeoJSON</a> example to learn how to initialize an
- `MGLPolylineFeature` and add it to an `MGLMapView` object.
  */
 MGL_EXPORT
 @interface MGLPolylineFeature : MGLPolyline <MGLFeature>
@@ -245,7 +186,7 @@ MGL_EXPORT
 @interface MGLPointCollectionFeature : MGLPointCollection <MGLFeature>
 @end
 
-// https://github.com/mapbox/mapbox-gl-native/issues/7473
+
 @compatibility_alias MGLMultiPointFeature MGLPointCollectionFeature;
 
 /**
@@ -278,15 +219,6 @@ MGL_EXPORT
  instances of `MGLCircleStyleLayer`, `MGLFillStyleLayer`, and
  `MGLLineStyleLayer` to configure the appearance of each kind of shape inside
  the collection.
-
- A shape collection feature is known as a
- <a href="https://tools.ietf.org/html/rfc7946#section-3.3">feature collection</a>
- in GeoJSON.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/shape-collection/">
- Add multiple shapes from a single shape source</a> example to learn how to
- add shape data to your map using an `MGLShapeCollectionFeature` object.
  */
 MGL_EXPORT
 @interface MGLShapeCollectionFeature : MGLShapeCollection <MGLFeature>

@@ -19,15 +19,8 @@ typedef NSString *MGLShapeSourceOption NS_STRING_ENUM;
  If the `shape` property contains point shapes, setting this option to
  `YES` clusters the points by radius into groups. The default value is `NO`.
  
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson-cluster"><code>cluster</code></a>
- source property in the Mapbox Style Specification.
- 
  This option only affects point features within an `MGLShapeSource` object; it
  is ignored when creating an `MGLComputedShapeSource` object.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/clustering/">Cluster point data</a> and <a href="https://docs.mapbox.com/ios/maps/examples/clustering-with-images/">Use images to cluster point data</a> examples to learn how to cluster point data with this `MGLShapeSourceOption`.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionClustered;
 
@@ -47,10 +40,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionClus
  less than the value of `MGLShapeSourceOptionMaximumZoomLevel` so that, at the
  maximum zoom level, the shapes are not clustered.
  
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson-clusterMaxZoom"><code>clusterMaxZoom</code></a>
- source property in the Mapbox Style Specification.
- 
  This option only affects point features within an `MGLShapeSource` object; it
  is ignored when creating an `MGLComputedShapeSource` object.
  */
@@ -59,10 +48,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionMaxi
 /**
  An `NSNumber` object containing an integer; specifies the minimum zoom level at
  which to create vector tiles. The default value is 0.
-
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson-minzoom"><code>minzoom</code></a>
- source property in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionMinimumZoomLevel;
 
@@ -70,10 +55,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionMini
  An `NSNumber` object containing an integer; specifies the maximum zoom level at
  which to create vector tiles. A greater value produces greater detail at high
  zoom levels. The default value is 18.
- 
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson-maxzoom"><code>maxzoom</code></a>
- source property in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionMaximumZoomLevel;
 
@@ -82,10 +63,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionMaxi
  buffer on each side. A value of 0 produces no buffer. A value of 512 produces a
  buffer as wide as the tile itself. Larger values produce fewer rendering
  artifacts near tile edges and slower performance. The default value is 128.
- 
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson-buffer"><code>buffer</code></a>
- source property in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionBuffer;
 
@@ -93,10 +70,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionBuff
  An `NSNumber` object containing a double; specifies the Douglas-Peucker
  simplification tolerance. A greater value produces simpler geometries and
  improves performance. The default value is 0.375.
- 
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson-tolerance"><code>tolerance</code></a>
- source property in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionSimplificationTolerance;
 
@@ -105,10 +78,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionSimp
  
  Set this property to `YES` in order for the `MGLLineStyleLayer.lineGradient` property to have its intended effect.
  The default value is `NO`.
- 
- This option corresponds to the
- <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/#sources-geojson-lineMetrics"><code>lineMetrics</code></a>
- source property in the Mapbox Style Specification.
  */
 FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionLineDistanceMetrics;
 
@@ -125,14 +94,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionLine
  completely in memory. For large data sets that do not fit completely in memory,
  use the `MGLComputedShapeSource` or `MGLVectorTileSource` class.
 
- Each
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson"><code>geojson</code></a>
- source defined by the style JSON file is represented at runtime by an
- `MGLShapeSource` object that you can use to refine the map’s content and
- initialize new style layers. You can also add and remove sources dynamically
- using methods such as `-[MGLStyle addSource:]` and
- `-[MGLStyle sourceWithIdentifier:]`.
-
  Any vector style layer initialized with a shape source should have a `nil`
  value in its `sourceLayerIdentifier` property.
 
@@ -147,9 +108,6 @@ FOUNDATION_EXTERN MGL_EXPORT const MGLShapeSourceOption MGLShapeSourceOptionLine
  let source = MGLShapeSource(identifier: "lines", features: [polyline], options: nil)
  mapView.style?.addSource(source)
  ```
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/clustering/">Cluster point data</a>, <a href="https://docs.mapbox.com/ios/maps/examples/clustering-with-images/">Use images to cluster point data</a>, and <a href="https://docs.mapbox.com/ios/maps/examples/live-data/">Add live data</a> examples to learn how to add data to your map using this `MGLSource` object.
  */
 MGL_EXPORT
 @interface MGLShapeSource : MGLSource
@@ -173,11 +131,6 @@ MGL_EXPORT
     current application’s resource bundle.
  @param options An `NSDictionary` of options for this source.
  @return An initialized shape source.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/live-data/">
- Add live data</a> example to learn how to add live data to your map by
- updating the an `MGLShapeSource` object's `URL` property.
  */
 - (instancetype)initWithIdentifier:(NSString *)identifier URL:(NSURL *)url options:(nullable NSDictionary<MGLShapeSourceOption, id> *)options NS_DESIGNATED_INITIALIZER;
 
@@ -207,11 +160,6 @@ MGL_EXPORT
  @param shape A concrete subclass of `MGLShape`
  @param options An `NSDictionary` of options for this source.
  @return An initialized shape source.
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/runtime-animate-line/">
- Animate a line</a> example to learn how to animate line data by continously
- updating an `MGLShapeSource`'s `shape` attribute.
  */
 - (instancetype)initWithIdentifier:(NSString *)identifier shape:(nullable MGLShape *)shape options:(nullable NSDictionary<MGLShapeSourceOption, id> *)options NS_DESIGNATED_INITIALIZER;
 

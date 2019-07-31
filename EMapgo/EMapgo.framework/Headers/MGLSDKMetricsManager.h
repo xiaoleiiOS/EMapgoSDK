@@ -69,7 +69,7 @@ MGL_EXPORT
 #if TARGET_OS_IOS
 /**
  :nodoc:
- Sends metric events to Mapbox.
+ Sends metric events to EMapgo.
  */
 - (void)pushMetric:(MGLMetricType)metricType withAttributes:(NSDictionary *)attributes;
 #endif

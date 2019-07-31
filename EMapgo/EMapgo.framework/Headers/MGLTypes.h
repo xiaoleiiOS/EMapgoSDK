@@ -31,10 +31,10 @@ typedef NSString *MGLExceptionName NS_TYPED_EXTENSIBLE_ENUM;
  */
 FOUNDATION_EXTERN MGL_EXPORT MGLExceptionName const MGLAbstractClassException;
 
-/** Indicates an error occurred in the Mapbox SDK. */
+/** Indicates an error occurred in the EMapgo SDK. */
 FOUNDATION_EXTERN MGL_EXPORT NSErrorDomain const MGLErrorDomain;
 
-/** Error constants for the Mapbox SDK. */
+/** Error constants for the EMapgo SDK. */
 typedef NS_ENUM(NSInteger, MGLErrorCode) {
     /** An unknown error occurred. */
     MGLErrorCodeUnknown = -1,
@@ -53,7 +53,9 @@ typedef NS_ENUM(NSInteger, MGLErrorCode) {
     /** Source is in use and cannot be removed */
     MGLErrorCodeSourceIsInUseCannotRemove = 7,
     /** Source is in use and cannot be removed */
-    MGLErrorCodeSourceIdentifierMismatch = 8
+    MGLErrorCodeSourceIdentifierMismatch = 8,
+    /** An error occurred while modifying the offline storage database */
+    MGLErrorCodeModifyingOfflineStorageFailed = 9
 };
 
 /** Options for enabling debugging features in an `MGLMapView` instance. */
@@ -118,5 +120,17 @@ NS_INLINE MGLTransition MGLTransitionMake(NSTimeInterval duration, NSTimeInterva
     
     return transition;
 }
+
+/**
+ Constants indicating the visibility of different map ornaments.
+ */
+typedef NS_ENUM(NSInteger, MGLOrnamentVisibility) {
+    /** A constant indicating that the ornament adapts to the current map state. */
+    MGLOrnamentVisibilityAdaptive,
+    /** A constant indicating that the ornament is always hidden. */
+    MGLOrnamentVisibilityHidden,
+    /** A constant indicating that the ornament is always visible. */
+    MGLOrnamentVisibilityVisible
+};
 
 NS_ASSUME_NONNULL_END

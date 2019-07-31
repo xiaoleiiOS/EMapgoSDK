@@ -89,15 +89,6 @@ typedef NS_ENUM(NSUInteger, MGLLineTranslationAnchor) {
  new line style layer and add it to the style using a method such as
  `-[MGLStyle addLayer:]`.
 
- #### Related examples
- See the <a
- href="https://docs.mapbox.com/ios/maps/examples/shape-collection/">Add multiple
- shapes from a single shape source</a> example to learn how to add a line to
- your map using this style layer. See the <a
- href="https://docs.mapbox.com/ios/maps/examples/runtime-add-line/">Add a line
- style layer from GeoJSON</a> example to learn how to add and style line data to
- an `MGLMapView` object at runtime.
-
  ### Example
 
  ```swift
@@ -321,10 +312,6 @@ MGL_EXPORT
  This property is only applied to the style if `linePattern` is set to `nil`.
  Otherwise, it is ignored.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-line-dasharray"><code>line-dasharray</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant array values no less than 0
@@ -506,10 +493,6 @@ MGL_EXPORT
  `NSValue` object containing a `CGVector` struct set to 0 points rightward and 0
  points downward. Set this property to `nil` to reset it to the default value.
  
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-line-translate"><code>line-translate</code></a>
- layout property in the Mapbox Style Specification.
- 
  You can set this property to an expression containing any of the following:
  
  * Constant `CGVector` values
@@ -531,10 +514,6 @@ MGL_EXPORT
  The default value of this property is an expression that evaluates to an
  `NSValue` object containing a `CGVector` struct set to 0 points rightward and 0
  points upward. Set this property to `nil` to reset it to the default value.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-line-translate"><code>line-translate</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  
@@ -567,10 +546,6 @@ MGL_EXPORT
  
  This property is only applied to the style if `lineTranslation` is non-`nil`.
  Otherwise, it is ignored.
- 
- This attribute corresponds to the <a
- href="https://www.mapbox.com/mapbox-gl-style-spec/#paint-line-translate-anchor"><code>line-translate-anchor</code></a>
- layout property in the Mapbox Style Specification.
  
  You can set this property to an expression containing any of the following:
  

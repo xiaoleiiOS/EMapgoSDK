@@ -29,10 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
  convenient to use an `MGLPointCollection`, `MGLMultiPolyline`, or
  `MGLMultiPolygon` object, respectively. To access a shape collection’s
  attributes, use the corresponding `MGLFeature` object.
-
- A shape collection is known as a
- <a href="https://tools.ietf.org/html/rfc7946#section-3.1.8">GeometryCollection</a>
- geometry in GeoJSON.
  */
 MGL_EXPORT
 @interface MGLShapeCollection : MGLShape

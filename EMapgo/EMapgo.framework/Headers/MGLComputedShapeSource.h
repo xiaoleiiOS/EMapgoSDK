@@ -71,13 +71,6 @@ FOUNDATION_EXTERN MGL_EXPORT MGLExceptionName const MGLInvalidDatasourceExceptio
  layer defines the appearance of any content supplied by the computed shape
  source.
  
- `MGLComputedShapeSource` is similar to `MGLShapeSource` but is optimized for
- data sets that change dynamically or are too large to fit completely in memory.
- It is also useful for data that is divided into tiles in a format other than
- <a href="https://www.mapbox.com/vector-tiles/">Mapbox Vector Tiles</a>. For
- <a href="http://geojson.org/">GeoJSON</a> data, use the `MGLShapeSource` class.
- For static tiles or Mapbox Vector Tiles, use the `MGLVectorTileSource` class.
- 
  You can add and remove sources dynamically using methods such as
  `-[MGLStyle addSource:]` and `-[MGLStyle sourceWithIdentifier:]`. This class
  cannot be represented in a style JSON file; you must add it ot the style at
@@ -88,9 +81,8 @@ MGL_EXPORT
 
 /**
  Returns a custom shape data source initialized with an identifier, and a
- dictionary of options for the source according to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson">style
- specification</a>.
+ dictionary of options for the source according to the style
+ specification.
  
  This class supports the following options:
  `MGLShapeSourceOptionMinimumZoomLevel`, `MGLShapeSourceOptionMaximumZoomLevel`,
@@ -107,9 +99,8 @@ MGL_EXPORT
 
 /**
  Returns a custom shape data source initialized with an identifier, data source, and a
- dictionary of options for the source according to the
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson">style
- specification</a>.
+ dictionary of options for the source according to the style
+ specification.
  
  This class supports the following options:
  `MGLShapeSourceOptionMinimumZoomLevel`, `MGLShapeSourceOptionMaximumZoomLevel`,

@@ -41,11 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
  method returns `YES`, this camera becomes the map view’s camera.
  @return A Boolean value indicating whether the map view should stay at
  `oldCamera` or change to `newCamera`.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/constraining-gestures/">
- Restrict map panning to an area</a> example to learn how to use this method
- and `MGLMapCamera` objects to restrict a users ability to pan your map.
  */
 - (BOOL)mapView:(MGLMapView *)mapView shouldChangeFromCamera:(MGLMapCamera *)oldCamera toCamera:(MGLMapCamera *)newCamera;
 
@@ -66,10 +61,10 @@ NS_ASSUME_NONNULL_BEGIN
  gesture is recognized. If this method returns `NO`, the map view’s camera
  continues to be this camera.
  @param newCamera The expected camera after the gesture completes. If this
- method returns `YES`, this camera becomes the map view’s camera.
+ method returns `YES`, the viewport of the map will transition to the new camera. Note that the new camera cannot be modified.
  @param reason The reason for the camera change.
  @return A Boolean value indicating whether the map view should stay at
- `oldCamera` or change to `newCamera`.
+ `oldCamera` or transition to `newCamera`.
 
  @note If this method is implemented `-mapView:shouldChangeFromCamera:toCamera:` will not be called.
  */
@@ -114,11 +109,6 @@ NS_ASSUME_NONNULL_BEGIN
  as possible to avoid affecting performance.
 
  @param mapView The map view whose viewpoint is changing.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/clustering/">
- Cluster point data</a> example to learn how to trigger an action whenever
- the map region changes.
  */
 - (void)mapViewRegionIsChanging:(MGLMapView *)mapView;
 
@@ -266,16 +256,24 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param mapView The map view that has just loaded a style.
  @param style The style that was loaded.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/runtime-multiple-annotations/">
- Dynamically style interactive points</a> and <a href="https://docs.mapbox.com/ios/maps/examples/shape-collection/">
- Add multiple shapes from a single shape source</a> examples to learn how to
- ensure a map's style has loaded before modifying it at runtime.
  */
 - (void)mapView:(MGLMapView *)mapView didFinishLoadingStyle:(MGLStyle *)style;
 
 - (nullable UIImage *)mapView:(MGLMapView *)mapView didFailToLoadImage:(NSString *)imageName;
+
+/**
+ Asks the delegate whether the map view should evict cached images.
+ 
+ This method is called in two scenarios: when the cumulative size of unused images
+ exceeds the cache size or when the last tile that includes the image is removed from
+ memory.
+ 
+ @param mapView The map view that is evicting the image.
+ @param imageName The image name that is going to be removed.
+ @return A Boolean value indicating whether the map view should evict
+ the cached image.
+ */
+- (BOOL)mapView:(MGLMapView *)mapView shouldRemoveStyleImage:(NSString *)imageName;
 
 #pragma mark Tracking User Location
 
@@ -374,14 +372,6 @@ NS_ASSUME_NONNULL_BEGIN
     displayed.
  @return The annotation image object to display for the given annotation or
     `nil` if you want to display the default marker image or an annotation view.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-models/">
- Annotation models</a>, <a href="https://docs.mapbox.com/ios/maps/examples/annotation-view-image/">
- Add annotation views and images</a>, and <a href="https://docs.mapbox.com/ios/maps/examples/marker-image/">
- Mark a place on the map with an image</a> examples to learn to specify which
- image should be used for `MGLAnnotation` objects that have been added to
- your map.
  */
 - (nullable MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation;
 
@@ -414,11 +404,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView The map view rendering the shape annotation.
  @param annotation The annotation being rendered.
  @return A color to use for the shape outline.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-models/">
- Annotation models</a> example to learn how to modify the outline color of an
- `MGLShape` object that has been added to your map as an annotation.
  */
 - (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation;
 
@@ -434,11 +419,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView The map view rendering the polygon annotation.
  @param annotation The annotation being rendered.
  @return The polygon’s interior fill color.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/polygon/">Add
- a polygon annotation</a> example to learn how to modify the color of a an
- `MGLPolygon` at runtime.
  */
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation;
 
@@ -451,11 +431,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView The map view rendering the polygon annotation.
  @param annotation The annotation being rendered.
  @return A line width for the polyline, measured in points.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/line-geojson/">
- Add a line annotation from GeoJSON</a> example to learn how to modify the
- line width of an `MGLPolylineFeature` on your map.
  */
 - (CGFloat)mapView:(MGLMapView *)mapView lineWidthForPolylineAnnotation:(MGLPolyline *)annotation;
 
@@ -483,12 +458,6 @@ NS_ASSUME_NONNULL_BEGIN
     displayed.
  @return The view object to display for the given annotation or `nil` if you
     want to display an annotation image instead.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-view-image/">
- Add annotation views and images</a> example to learn how to specify what
- `MGLViewAnnotation` to use for a given `MGLPointAnnotation` object on your
- map.
  */
 - (nullable MGLAnnotationView *)mapView:(MGLMapView *)mapView viewForAnnotation:(id <MGLAnnotation>)annotation;
 
@@ -530,11 +499,6 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param mapView The map view containing the annotation.
  @param annotation The annotation that was selected.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/runtime-multiple-annotations/">
- Dynamically style interactive points</a> example to learn how to remove an
- annotation view if it has already been selected.
  */
 - (void)mapView:(MGLMapView *)mapView didSelectAnnotation:(id <MGLAnnotation>)annotation;
 
@@ -609,13 +573,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param annotation The object representing the annotation.
  @return A Boolean value indicating whether the annotation should show a
     callout.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-view-image/">
- Add annotation views and images</a>, <a href="https://docs.mapbox.com/ios/maps/examples/custom-callout/">
- Display custom views as callouts</a>, and <a href="https://docs.mapbox.com/ios/maps/examples/default-callout/">
- Default callout usage</a> examples to learn how to show callouts for
- `MGLAnnotation` objects.
  */
 - (BOOL)mapView:(MGLMapView *)mapView annotationCanShowCallout:(id <MGLAnnotation>)annotation;
 
@@ -633,11 +590,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param annotation The object representing the annotation.
  @return A view conforming to the `MGLCalloutView` protocol, or `nil` to use the
     default callout view.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/custom-callout/">
- Display custom views as callouts</a> example to learn how to customize an
- `MGLAnnotation` object's `MGLCalloutView`.
  */
 - (nullable id <MGLCalloutView>)mapView:(MGLMapView *)mapView calloutViewForAnnotation:(id <MGLAnnotation>)annotation;
 
@@ -664,11 +616,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView The map view presenting the annotation callout.
  @param annotation The object representing the annotation with the callout.
  @return The accessory view to display.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/default-callout/">
- Default callout usage</a> example to learn how to modify the view that is
- displayed on the left side of the standard callout bubble.
  */
 - (nullable UIView *)mapView:(MGLMapView *)mapView leftCalloutAccessoryViewForAnnotation:(id <MGLAnnotation>)annotation;
 
@@ -695,11 +642,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView The map view presenting the annotation callout.
  @param annotation The object representing the annotation with the callout.
  @return The accessory view to display.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/default-callout/">
- Default callout usage</a> example to learn how to modify the view that is
- displayed on the right side of the standard callout bubble.
  */
 - (nullable UIView *)mapView:(MGLMapView *)mapView rightCalloutAccessoryViewForAnnotation:(id <MGLAnnotation>)annotation;
 
@@ -725,11 +667,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView The map view containing the specified annotation.
  @param annotation The annotation whose accessory view was tapped.
  @param control The control that was tapped.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/default-callout/">
- Default callout usage</a> example to learn how to trigger an action when the
- standard callout bubble's accessory control is tapped.
  */
 - (void)mapView:(MGLMapView *)mapView annotation:(id <MGLAnnotation>)annotation calloutAccessoryControlTapped:(UIControl *)control;
 
@@ -748,11 +685,6 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param mapView The map view containing the specified annotation.
  @param annotation The annotation whose callout was tapped.
-
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/custom-callout/">
- Display custom views as callouts</a> example to learn how to trigger an
- action when an `MGLAnnotation`s `MGLCalloutView` is tapped.
  */
 - (void)mapView:(MGLMapView *)mapView tapOnCalloutForAnnotation:(id <MGLAnnotation>)annotation;
 

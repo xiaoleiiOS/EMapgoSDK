@@ -22,11 +22,6 @@
  annotation. However, you can create individual `MGLPointAnnotation` objects
  from the `coordinates` array and add those annotation objects to the map view
  using the `-[MGLMapView addAnnotations:]` method.
-
- A point collection is known as a
- <a href="https://tools.ietf.org/html/rfc7946#section-3.1.3">MultiPoint</a>
- geometry in GeoJSON. Do not confuse `MGLPointCollection` with `MGLMultiPoint`,
- the abstract superclass of `MGLPolyline` and `MGLPolygon`.
  */
 MGL_EXPORT
 @interface MGLPointCollection : MGLShape <MGLOverlay>

@@ -22,13 +22,6 @@ MGL_EXPORT
  An image source is added to an `MGLStyle` object along with one or more
  `MGLRasterStyleLayer` objects. Use a raster style layer to control the
  appearance of content supplied by the image source.
- 
- Each
- <a href="https://www.mapbox.com/mapbox-gl-style-spec/#sources-image"><code>image</code></a>
- source defined by the style JSON file is represented at runtime by an
- `MGLImageSource` object that you can use to initialize new style layers. You
- can also add and remove sources dynamically using methods such as
- `-[MGLStyle addSource:]` and `-[MGLStyle sourceWithIdentifier:]`.
 
  ### Example
 
@@ -38,14 +31,9 @@ MGL_EXPORT
    bottomLeft: CLLocationCoordinate2D(latitude: 37.936, longitude: -80.425),
    bottomRight: CLLocationCoordinate2D(latitude: 37.936, longitude: -71.516),
    topRight: CLLocationCoordinate2D(latitude: 46.437, longitude: -71.516))
- let source = MGLImageSource(identifier: "radar", coordinateQuad: coordinates, url: URL(string: "https://www.mapbox.com/mapbox-gl-js/assets/radar.gif")!)
+ let source = MGLImageSource(identifier: "radar", coordinateQuad: coordinates, url: URL(string: "")!)
  mapView.style?.addSource(source)
  ```
- 
- #### Related examples
- See the <a href="https://docs.mapbox.com/ios/maps/examples/image-source/">
- Add an image</a> example to learn how to add an image to your map using
- `MGLImageSource`.
  */
 MGL_EXPORT
 @interface MGLImageSource : MGLSource
